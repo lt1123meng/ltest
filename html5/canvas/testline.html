@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #canvas{
+            display: block;
+            margin: 20px auto;
+            border:1px solid #333
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="550"></canvas>
+<script>
+    var canvas=document.getElementById("canvas");
+    var context=canvas.getContext('2d');
+    var spot=[
+        [[{x:0,y:0},{x:500,y:0},{x:250,y:250},{x:0,y:0}],'#0000Cc'],
+        [[{x:500,y:0},{x:500,y:500},{x:250,y:250},{x:500,y:0}],'#00FF66'],
+        [[{x:0,y:0},{x:0,y:250},{x:125,y:125},{x:0,y:0}],'#9900Cc'],
+        [[{x:125,y:125},{x:250,y:250},{x:125,y:375},{x:0,y:250},{x:125,y:125}],'#99FF00'],
+        [[{x:250,y:250},{x:375,y:375},{x:125,y:375},{x:250,y:250}],'#CC00Cc'],
+        [[{x:125,y:375},{x:375,y:375},{x:500,y:500},{x:250,y:500},{x:125,y:375}],'#0000ff'],
+        [[{x:0,y:250},{x:250,y:500},{x:0,y:500},{x:0,y:250}],'#CCCCCc'],
+
+    ]
+    var index=0;
+    console.log(spot.length)
+    for(var j=0;j<spot.length;j++) {
+        draw(spot, context)
+    }
+    function draw(spot,context){
+        context.beginPath()
+        context.moveTo(spot[index][0][0].x,spot[index][0][0].y);
+        for(var i=1;i<spot[index][0].length;i++) {
+            context.lineTo(spot[index][0][i].x,spot[index][0][i].y);
+        }
+        context.closePath();
+        context.fillStyle=spot[index][1];
+        context.fill()
+        context.stroke()
+        index++
+    }
+</script>
+</body>
+</html>
