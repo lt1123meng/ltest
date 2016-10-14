@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #canvas{
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="550"></canvas>
+<script>
+    var canvas=document.getElementById("canvas");
+    var context=canvas.getContext('2d');
+    var bgCxt=canvas.getContext('2d');
+    var linnerGrad=bgCxt.createRadialGradient(500,900,450,500,900,700)
+    linnerGrad.addColorStop(0,'#333')
+    linnerGrad.addColorStop(1,'#040c85')
+    bgCxt.fillStyle=linnerGrad;
+    bgCxt.rect(0,0,1000,500)
+    bgCxt.fill()
+    for(var i= 0;i<110;i++){
+        drawStar(Math.random()*1000,Math.random()*400,Math.random()*10+5)
+    }
+    function drawStar(x,y,radius){
+        console.log(y)
+        context.beginPath()
+        context.moveTo(radius+x,y);
+        context.lineTo(radius*0.5*Math.cos(36/180*Math.PI)+x,y-radius*0.5*Math.sin(36/180*Math.PI));
+        context.lineTo(radius*Math.cos(72/180*Math.PI)+x,y-radius*Math.sin(72/180*Math.PI));
+        context.lineTo(radius*0.5*Math.cos(36*3/180*Math.PI)+x,y-radius*0.5*Math.sin(36*3/180*Math.PI));
+        context.lineTo(radius*Math.cos(72*2/180*Math.PI)+x,y-radius*Math.sin(72*2/180*Math.PI))-y;
+        context.lineTo(radius*0.5*Math.cos(36*5/180*Math.PI)+x,y-radius*0.5*Math.sin(36*5/180*Math.PI));
+        context.lineTo(radius*Math.cos(72*3/180*Math.PI)+x,y-radius*Math.sin(72*3/180*Math.PI));
+        context.lineTo(radius*0.5*Math.cos(36*7/180*Math.PI)+x,y-radius*0.5*Math.sin(36*7/180*Math.PI));
+        context.lineTo(radius*Math.cos(72*4/180*Math.PI)+x,y-radius*Math.sin(72*4/180*Math.PI));
+        context.lineTo(radius*0.5*Math.cos(36*9/180*Math.PI)+x,y-radius*0.5*Math.sin(36*9/180*Math.PI));
+        context.lineTo(radius*Math.cos(72*5/180*Math.PI)+x,y-radius*Math.sin(72*5/180*Math.PI));
+        context.fillStyle='#d1c802'
+        context.fill()
+    }
+    context.beginPath()
+    context.arc(700,200,100,0.5*Math.PI,-0.5*Math.PI,true)
+    context.strokeStyle='#d1c802'
+    context.moveTo(700,100);
+    context.quadraticCurveTo(820,200,700,300)
+//    context.rotate(0.3*Math.PI)
+//    context.arcTo(1000,200,700,300,100*Math.sqrt(10)/3)
+    context.stroke()
+    context.fillStyle='#d1c802'
+    context.fill()
+    context.font='bold 40px Arial'
+    context.fillStyle='red';
+    context.fillText('欢迎光临',100,100,500)
+    context.font='bold 40px Arial'
+    context.strokeStyle='red';
+    context.strokeText('欢迎光临',100,200)
+</script>
+</body>
+</html>
