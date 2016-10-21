@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #canvas,input{
+            display: block;
+            margin: 20px auto;
+        }
+        #canvas{
+            border:3px solid #4ff
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="336"></canvas>
+<input id="range" type="range"  step='0.01' name="points" min="1" max="10" onmousemove="change()"/>
+<script>
+    var canvas=document.getElementById('canvas');
+    var context=canvas.getContext('2d');
+    var image=new Image()
+    image.src='img1.jpg';
+    var range=document.getElementById('range');
+    var scale=parseInt(range.value);
+    image.onload=function(){
+        drawImageByScal(scale)
+    }
+    function drawImageByScal(scale){
+        console.log(scale)
+        var width=500*scale;
+        var height=336*scale;
+        console.log(width)
+        console.log(height)
+        var sx=width/2-250
+        var sy=height/2-168
+        context.drawImage(image,sx,sy,500/scale,336/scale,0,0,500,336)
+    }
+    function change(){
+        scale=parseInt(range.value);
+        drawImageByScal(scale)
+    }
+</script>
+</body>
+</html>
